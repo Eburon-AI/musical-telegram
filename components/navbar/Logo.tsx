@@ -6,8 +6,8 @@ const Logo = () => {
   return (
     <Link href="/" className="h-[35px] w-[150px] relative hidden md:block ">
       <Image
-        src="/images/vacationhub.png"
-        alt="logo"
+        src="/images/eburon-estate.png"
+        alt="Eburon Estate"
         fill
         sizes="150px"
         priority
