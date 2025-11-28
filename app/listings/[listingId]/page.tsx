@@ -63,7 +63,7 @@ const ListingPage = async ({ params: { listingId } }: { params: IParams }) => {
           roomCount={roomCount}
           guestCount={guestCount}
           bathroomCount={bathroomCount}
-          latlng={latlng.map((coord) => Number(coord))}
+          latlng={latlng.map((coord: any) => Number(coord))}
         />
       </ListingClient>
     </section>

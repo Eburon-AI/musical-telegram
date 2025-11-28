@@ -47,7 +47,7 @@ export const updateFavorite = async ({
     let hasFavorited;
 
     if (!favorite) {
-      newFavorites = favorites.filter((id) => id !== listingId);
+      newFavorites = favorites.filter((id: any) => id !== listingId);
       hasFavorited = false;
     } else {
       if (favorites.includes(listingId)) {

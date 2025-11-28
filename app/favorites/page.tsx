@@ -29,7 +29,7 @@ const FavoritesPage = async () => {
     <section className="main-container">
       <Heading title="Favorites" subtitle="List of places you favorited!" />
       <div className=" mt-8 md:mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8">
-        {favorites.map((listing) => {
+        {favorites.map((listing: any) => {
           return <ListingCard key={listing.id} data={listing} hasFavorited/>;
         })}
       </div>
