@@ -1,91 +1,186 @@
-# Airbnb Clone
+# Eburon Estate
 
-This is an Airbnb clone built with Next.js, TypeScript, Tailwind CSS, MongoDB, Prisma, Next auth, Leaflet and many other technologies.
+A modern property rental platform built with Next.js, showcasing premium properties in Brussels and across Belgium. Powered by PostgreSQL, Prisma, and Stripe for seamless bookings and payments.
+
+![Eburon Estate Logo](./public/eburon-logo.png)
 
 ## Features
 
-- User registration and authentication
-- Property listing and browsing
-- Property booking and reservations
-- Search and filtering of properties
-- Interactive map using Leaflet to display property locations
+- 🏠 **Property Listings** - Browse authentic Brussels and Belgium estates
+- 🔐 **Authentication** - Secure login with GitHub and Google OAuth
+- 💳 **Payments** - Integrated Stripe checkout for reservations
+- 🗺️ **Interactive Maps** - Leaflet integration to explore property locations
+- 📱 **Responsive Design** - Beautiful UI with Tailwind CSS
+- 🎨 **Modern Stack** - Next.js 14, TypeScript, PostgreSQL with Prisma Accelerate
+- 🖼️ **Image Storage** - EdgeStore for property photos
 
-## Demo
+## Tech Stack
 
-You can check out a live demo of the Airbnb clone project [here](https://airbnb-clone-phi-green.vercel.app/).
+- **Framework**: Next.js 14.2
+- **Language**: TypeScript
+- **Database**: PostgreSQL (Prisma Accelerate)
+- **Authentication**: NextAuth.js (GitHub, Google OAuth)
+- **Payments**: Stripe
+- **Styling**: Tailwind CSS
+- **Maps**: Leaflet
+- **Image Storage**: EdgeStore
+- **ORM**: Prisma
 
-## Screenshots
+## Getting Started
 
-<kbd><img width="944" alt="vacationhub" src="https://github.com/sudeepmahato16/airbnb_clone/assets/122378993/f893e203-8a2d-4ff1-ae20-67e64187b770"></kbd>
+### Prerequisites
 
-<kbd><img width="886" alt="login-modal" src="https://github.com/sudeepmahato16/airbnb_clone/assets/122378993/3d6675e0-6046-48dc-b55f-7ef318581ccd"></kbd>
+- Node.js 18+ installed
+- PostgreSQL database (or Prisma Accelerate)
+- GitHub OAuth App credentials
+- Google OAuth credentials
+- Stripe account
+- EdgeStore account
 
-<kbd><img width="810" alt="listing" src="https://github.com/sudeepmahato16/airbnb_clone/assets/122378993/a0b05a50-cbc2-40db-8f62-6cc203a7c887"></kbd>
+### Installation
 
-## Prerequisites
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Eburon-AI/musical-telegram.git
+   cd musical-telegram
+   ```
 
-Make sure you have the following software installed on your system:
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-- git If you want to clone the project from GitHub and work with it locally, you will need to have Git installed on your system. You can download and install Git from the official website (https://git-scm.com/).
+3. **Set up environment variables**
 
-- Node.js Application requires Node.js to be installed on your system in order to run. You can download and install the latest version of Node.js from the official website (https://nodejs.org/).
+   Create a `.env` file in the root directory with the following:
 
-## Installation
+   ```env
+   # Database
+   DATABASE_URL="your-prisma-accelerate-connection-string"
+   DIRECT_DATABASE_URL="your-direct-postgresql-connection-string"
 
-- Clone the repository:
+   # GitHub OAuth
+   GITHUB_CLIENT_ID="your-github-client-id"
+   GITHUB_CLIENT_SECRET="your-github-client-secret"
 
-  ```
-  git clone https://github.com/sudeepmahato16/airbnb_clone.git
-  ```
+   # Google OAuth
+   GOOGLE_CLIENT_ID="your-google-client-id"
+   GOOGLE_CLIENT_SECRET="your-google-client-secret"
 
-- Navigate to the project directory:
+   # NextAuth
+   NEXTAUTH_SECRET="your-nextauth-secret"
+   NEXTAUTH_URL="http://localhost:3000"
 
-  ```
-  cd Airbnb
-  ```
+   # EdgeStore
+   EDGE_STORE_ACCESS_KEY="your-edgestore-access-key"
+   EDGE_STORE_SECRET_KEY="your-edgestore-secret-key"
 
-- Install the dependencies:
+   # Stripe
+   STRIPE_SECRET_KEY="your-stripe-secret-key"
+   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY="your-stripe-publishable-key"
+   STRIPE_WEBHOOK_SECRET="your-stripe-webhook-secret"
 
-  ```
-  npm install
-  ```
+   # Server
+   NEXT_PUBLIC_SERVER_URL="http://localhost:3000"
+   ```
 
-- Set up the environment variables:
+4. **Run database migrations**
+   ```bash
+   npx prisma migrate deploy
+   ```
 
-  1.  Create a `.env.local` file in the root directory.
+5. **Seed the database** (optional - adds sample Brussels properties)
+   ```bash
+   npm run db:seed
+   ```
 
-  2.  Add the following variables to the .env file, replacing the placeholder values with your own:
+6. **Start the development server**
+   ```bash
+   npm run dev
+   ```
 
-      ```
-      DATABASE_URL=<your-mongodb-uri>
-      GITHUB_CLIENT_ID=<your-github-client-id>
-      GITHUB_CLIENT_SECRET=<your-github-client-secret>
-      GOOGLE_CLIENT_ID=<your-google-client-id>
-      GOOGLE_CLIENT_SECRET=<your-google-client-secret>
-      NEXTAUTH_SECRET=<your-nextauth-secret>
-      EDGE_STORE_ACCESS_KEY=<your-edge-store-access-key>
-      EDGE_STORE_SECRET_KEY=<your-edge-store-secret-key>
-      ```
+7. **Open your browser**
+   
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-  ```
+## OAuth Setup
 
-  ```
+### GitHub OAuth App
 
-## Usage
+1. Go to [GitHub Developer Settings](https://github.com/settings/developers)
+2. Create a new OAuth App
+3. Set **Authorization callback URL** to:
+   - Development: `http://localhost:3000/api/auth/callback/github`
+   - Production: `https://yourdomain.com/api/auth/callback/github`
 
-- Start the development server:
+### Google OAuth Client
 
-  ```
-  npm run dev
-  ```
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select existing
+3. Enable Google+ API
+4. Create OAuth 2.0 credentials
+5. Add **Authorized redirect URIs**:
+   - Development: `http://localhost:3000/api/auth/callback/google`
+   - Production: `https://yourdomain.com/api/auth/callback/google`
 
-- Open your browser and visit `http://localhost:3000` to access the application.
+## Deployment
+
+### Build for Production
+
+```bash
+npm run build
+npm start
+```
+
+### Deploy to Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Eburon-AI/musical-telegram)
+
+1. Connect your GitHub repository
+2. Add all environment variables
+3. Deploy
+
+## Database Schema
+
+The application uses the following main models:
+
+- **User** - User accounts with OAuth support
+- **Account** - OAuth account linkage
+- **Listing** - Property listings (Brussels/Belgium estates)
+- **Reservation** - Booking records with Stripe integration
+
+## Sample Data
+
+The seed script includes 8 authentic Brussels properties:
+- Uccle Villa with Garden
+- Grand Place Apartment
+- Ixelles Maison de Maître
+- European Quarter Loft
+- Laeken Beaux-Arts Mansion
+- Bois de la Cambre Penthouse
+- Châtelain Studio
+- Watermael-Boitsfort Family Home
+
+## Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run db:seed` - Seed database with sample data
 
 ## Contributing
 
-Contributions are welcome! If you want to contribute to this project, please follow these steps:
+We welcome contributions to Eburon Estate! Please feel free to submit issues and pull requests.
 
-- Fork the repository.
-- Create a new branch for your feature or bug fix.
-- Commit your changes to the new branch.
-- Open a pull request back to the main repository, including a description of your changes.
+## License
+
+MIT License - see [LICENSE](./LICENSE) file for details
+
+## Support
+
+For support, email support@eburon.ai or visit [property.eburon.ai](https://property.eburon.ai)
+
+---
+
+**Built with ❤️ by the Eburon AI Team**
